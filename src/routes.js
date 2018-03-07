@@ -5,5 +5,5 @@ import Machine from './Machine.vue'
 export default[
   {path:'/list',component:MachinesList},
   {path:'/map',component:MachinesMap},
-  // {path:'/machine',component:Machine}
+  {path:'/machines/:id',component:Machine, props: true}
 ]

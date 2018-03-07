@@ -1,36 +1,45 @@
 
 <template >
-  <div class="">
 
-    <h1>Machine:{{myData[0].name}}</h1>
-
+  <div id="single-blog">
+    <h1>{{data.name}}</h1>
     <h2
-    v-if="myData[0].status"
-    :class="{ bold: myData[0].status }">Status: {{msg}}</h2>
+    v-if="data.status"
+    :class="{ bold: data.status }">Status: ok</h2>
     <h2
-    v-else="myData[0].status"
+    v-else="data.status"
     >Status: ko</h2>
-    <p>Last time checked:{{time}}</p>
+
+    <p>{{data.name}}</p>
   </div>
 </template>
 <script type="text/javascript">
-var event = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
+import axios from 'axios';
 
   export default{
-    props: ['myData'],
+     props: ['id'],
+
     data(){
+
      return{
-       msg:'ok',
-       time :event.toLocaleString('en-GB', { timeZone: 'UTC' })
+       data:[],
+       machine:{}
      }
     },
     methods:{
 
     },
+
+    created(){
+
+      axios.get('https://machine-api-campus.herokuapp.com/api/machines/'+this.id)
+      .then(response =>  {
+        this.data = response.data
+        console.log(response.data.id);
+      })
+    }
   }
 </script>
 <style media="screen">
-  .bold{
-    color: red;
-  }
+
 </style>

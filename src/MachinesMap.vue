@@ -1,13 +1,13 @@
 <template>
   <gmap-map
     :center="center"
-    :zoom="7"
-    style="width: 100%; height: 500px;margin-top:50px;"
+    :zoom="1"
+    style="width: 500px; height: 500px;margin-top:50px;"
   >
     <gmap-marker
-      :key="index"
-      v-for="(m, index) in markers"
-      :position="m.position"
+      v-for="machin in myData"
+      :position="{lat:parseInt(machin.latitude, 10),
+   lng:parseInt(machin.longitude, 10)}"
       :clickable="true"
       :draggable="true"
       @click="center=m.position"
@@ -17,29 +17,29 @@
 <script type="text/javascript">
 import * as VueGoogleMaps from 'vue2-google-maps';
 import Vue from 'vue';
-import axios from 'axios';
   Vue.use(VueGoogleMaps, {
     load: {
       key: 'AIzaSyBfM2zyvyUXxPmFdrY6VWNdj5i5FQ7gtj4',
-      // v: 'OPTIONAL VERSION NUMBER',
-      // libraries: 'places', //// If you need to use place input
+      v: 'OPTIONAL VERSION NUMBER',
     }
   });
 
-  // axios.get('https://machine-api-campus.herokuapp.com/api/machines')
-  //   .then(function (response) {
-  //     console.log(response.data);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error);
-  //   });
 export default{
   name:"machine",
   props: ['myData'],
   data(){
    return{
-     data: [],
      errors: [],
+     machines: [{
+      id: 1,
+      latitude: 10,
+      longitude: 10,
+    },
+    {
+      id: 2,
+      latitude: 11,
+      longitude: 9.6,
+    }],
      center: {lat: 10.0, lng: 10.0},
      markers: [{position: {lat: 10.0, lng: 10.0}
      }, {
@@ -51,16 +51,7 @@ export default{
   methods:{
 
   },
-  created(){
-    axios.get(`https://machine-api-campus.herokuapp.com/api/machines`)
-  .then(response => {
-    this.data = response.data
-    console.log(this.data[0].name);
-  })
-  .catch(e => {
-    this.errors.push(e)
-  })
-  }
+
 }
 </script>
 <style media="screen">

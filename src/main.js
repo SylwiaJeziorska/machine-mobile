@@ -6,6 +6,8 @@ import MachinesList from './MachinesList.vue'
 import MachinesMap from './MachinesMap.vue'
 import Machine from './Machine.vue'
 import * as VueGoogleMaps from 'vue2-google-maps'
+
+
 Vue.use(VueGoogleMaps, {
   load: {
     key: 'YOUR_API_TOKEN',

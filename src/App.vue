@@ -4,34 +4,22 @@
     <h1>{{ msg }}</h1>
     <router-link  to="/list">Consulter la liste des machines</router-link>
     <router-link  to="/map">Voir la carte</router-link>
-    <router-view :myData='machines'></router-view>
+    <router-view :myData='data'></router-view>
   </div>
 </template>
 
 <script>
+import axios from 'axios';
 export default {
   name: 'app',
   data () {
     return {
       a:false,
       b:false,
+      data:[],
+      errors: [],
+      status:'',
       msg: 'Que voulez vous faire?',
-      // machine:{
-      //   name: 'What else ?',
-      //   status: true,
-      //   checkedAt: new Date(Date.UTC(2012, 11, 20, 3, 0, 0)),
-      // },
-      machines: [{
-            id: 1,
-            name: 'What else ?',
-            status: true,
-            checkedAt: new Date(),
-        }, {
-            id: 2,
-            name: 'Broken',
-            status: false,
-            checkedAt: new Date(),
-        }]
     }
   },
   methods:{
@@ -47,6 +35,18 @@ export default {
       alert('utilisateur a cliqué dessus map');
     }
   },
+  created(){
+    this.status = 'loading';
+    axios.get(`https://machine-api-campus.herokuapp.com/api/machines`)
+  .then(response => {
+    this.data = response.data,
+
+    console.log(this.data[0].name);
+  })
+  .catch(e => {
+    this.errors.push(e)
+  })
+  }
 }
 </script>
 

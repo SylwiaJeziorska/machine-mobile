@@ -3,7 +3,7 @@
 
     <h1>List des machines</h1>
     <ul>
-    <li v-for='machine in machines'>
+    <li v-for='machine in myData'>
       <h1>
 
         {{machine.name}}
@@ -16,7 +16,10 @@
         v-else="machine.status"
         >Status: ko
       </h2>
+      <p>{{machine.id}}</p>
       <p>Last time checked:{{time}}</p>
+      <router-link  :to="{ path: '/machines/'+ machine.id}" >click</router-link>
+
     </li>
   </ul>
 
@@ -26,21 +29,11 @@
 var event = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
 
 export default{
-  // props: ['myData'],
+  props: ['myData'],
   data () {
     return {
       time :event.toLocaleString('en-GB', { timeZone: 'UTC' }),
-      machines: [{
-            id: 1,
-            name: 'What else ?',
-            status: true,
-            checkedAt: new Date(),
-        }, {
-            id: 2,
-            name: 'Broken',
-            status: false,
-            checkedAt: new Date(),
-        }]
+
     }
   },
 }
@@ -54,5 +47,8 @@ li{
   width: 70%;
   padding: 10px;
 
+}
+.bold{
+  color:red;
 }
 </style>
