@@ -9,8 +9,7 @@
     <h2
     v-else="data.status"
     >Status: ko</h2>
-
-    <p>{{data.name}}</p>
+    <p @click="showform()" >update</p>
   </div>
 </template>
 <script type="text/javascript">
@@ -22,24 +21,22 @@ import axios from 'axios';
     data(){
 
      return{
+       a:false,
        data:[],
        machine:{}
      }
     },
     methods:{
-
+      showform:function(){
+        this.a = true;
+      },
     },
 
     created(){
 
-      axios.get('https://machine-api-campus.herokuapp.com/api/machines/'+this.id)
-      .then(response =>  {
-        this.data = response.data
-        console.log(response.data.id);
-      })
     }
   }
 </script>
-<style media="screen">
+<style scoped>
 
 </style>

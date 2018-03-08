@@ -39,9 +39,8 @@ export default {
     this.status = 'loading';
     axios.get(`https://machine-api-campus.herokuapp.com/api/machines`)
   .then(response => {
-    this.data = response.data,
+    this.data = response.data
 
-    console.log(this.data[0].name);
   })
   .catch(e => {
     this.errors.push(e)

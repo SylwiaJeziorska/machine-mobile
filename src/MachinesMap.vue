@@ -2,7 +2,7 @@
   <gmap-map
     :center="center"
     :zoom="1"
-    style="width: 500px; height: 500px;margin-top:50px;"
+    style="width: 100%; height: 500px;margin-top:50px;"
   >
     <gmap-marker
       v-for="machin in myData"
@@ -30,16 +30,7 @@ export default{
   data(){
    return{
      errors: [],
-     machines: [{
-      id: 1,
-      latitude: 10,
-      longitude: 10,
-    },
-    {
-      id: 2,
-      latitude: 11,
-      longitude: 9.6,
-    }],
+
      center: {lat: 10.0, lng: 10.0},
      markers: [{position: {lat: 10.0, lng: 10.0}
      }, {

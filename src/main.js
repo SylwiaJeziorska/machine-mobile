@@ -5,6 +5,8 @@ import Routes from './routes'
 import MachinesList from './MachinesList.vue'
 import MachinesMap from './MachinesMap.vue'
 import Machine from './Machine.vue'
+import Newmachine from './Newmachine.vue'
+
 import * as VueGoogleMaps from 'vue2-google-maps'
 
 
@@ -19,6 +21,8 @@ Vue.use(VueRouter)
 Vue.component('machines-map', MachinesMap)
 Vue.component('machines-list', MachinesList)
 Vue.component('machine', Machine)
+Vue.component('newmachine', Newmachine)
+
 const router = new VueRouter({
   routes:Routes
 })
