@@ -63,6 +63,6 @@ export default{
 </script>
 <style scoped>
 .vue-map-container{
-  margin-top: 100px;
+  margin-top: 100px!important;
 }
 </style>

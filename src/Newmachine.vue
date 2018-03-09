@@ -26,7 +26,7 @@ import axios from 'axios';
         name:'test',
         latitude:'10',
         longitude:'10',
-        status,
+        status:true,
        checkedAt:event.toLocaleString('en-GB', { timeZone: 'UTC' }),
       },
      }
@@ -57,7 +57,7 @@ import axios from 'axios';
 
   }
 </script>
-<style scoped>
+<style scoped >
  input{
    margin-top: 5px;
  }

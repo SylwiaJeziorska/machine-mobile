@@ -3,7 +3,7 @@
 
     <h1>List des machines</h1>
 
-    <button type="submit"  @click="showform()" >Add new machine</button>
+    <button class='myclass' type="submit"  @click="showform()" >Add new machine</button>
     <newmachine v-show='a' :myMachines ='myData'>
 
     </newmachine>
@@ -23,8 +23,11 @@
       </h2>
       <p>{{machine.id}}</p>
       <p>Last time checked:{{time}}</p>
-      <router-link  :to="{ path: '/machines/'+ machine.id}">click</router-link>
-      <p @click="mydelete(machine.id)">delet</p>
+      <div class="myclicks">
+
+        <router-link  :to="{ path: '/machines/'+ machine.id}">More</router-link>
+        <a @click="mydelete(machine.id)">Delet</a>
+      </div>
 
 
     </li>
@@ -66,6 +69,18 @@ export default{
 
 </script>
 <style scoped>
+.myclicks{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.myclicks a {
+  text-decoration: none;
+  background-color:  #4fc08d;
+  margin:10px;
+  padding: 10px 30px;
+  color:white;
+}
 li{
   list-style: none;
   border: 1px solid black;
@@ -77,5 +92,11 @@ li{
 }
 .bold{
   color:red;
+}
+.myclass{
+  padding: 20px;
+      background-color: #4fc08d;
+      border: none;
+      color: white;
 }
 </style>
