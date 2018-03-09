@@ -45,6 +45,7 @@ export default {
   .catch(e => {
     this.errors.push(e)
   })
+
   }
 }
 </script>
@@ -57,6 +58,7 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+
 }
 
 img {

@@ -1,11 +1,10 @@
 <template >
   <div id="add-machine">
     <form @submit.prevent="addMachine()" class="form">
-
-      <input  ref="name" placeholder="add name" v-model="buffer.name"><br/>
-      <input  ref="latitude" placeholder="latitude" v-model="buffer.latitude"><br/>
-      <input  ref="longitude" placeholder="add machine" v-model="buffer.longitude"><br/>
-      <select   name="status" v-model="buffer.staus" >
+      <input   placeholder="add name" v-model="buffer.name"><br/>
+      <input  placeholder="latitude" v-model="buffer.latitude"><br/>
+      <input   placeholder="add machine" v-model="buffer.longitude"><br/>
+      <select   v-model="buffer.staus" >
         <option   v-bind:value="true">ON</option>
         <option   v-bind:value="false">OFF</option>
       </select>
@@ -17,9 +16,8 @@
 <script type="text/javascript">
 var event = new Date(Date.UTC(2012, 11, 20, 3, 0, 0));
 import axios from 'axios';
-
   export default{
-      props: ['myMachines'],
+
     data(){
 
      return{
@@ -28,7 +26,7 @@ import axios from 'axios';
         name:'test',
         latitude:'10',
         longitude:'10',
-        status: true,
+        status,
        checkedAt:event.toLocaleString('en-GB', { timeZone: 'UTC' }),
       },
      }
@@ -36,23 +34,26 @@ import axios from 'axios';
     methods:{
       addMachine:function(){
         axios.post('https://machine-api-campus.herokuapp.com/api/machines', {
-
             name:this.buffer.name,
             status:this.buffer.status,
             latitude:this.buffer.latitude,
             longitude:this.buffer.longitude,
-            checkedAt:new Date(Date.UTC(2012, 11, 20, 3, 0, 0))
+            checkedAt:this.buffer.checkedAt
 
             })
           .then(function (response) {
-            console.log(response);
+            alert('machine created');
           })
           .catch(function (error) {
-              // console.log(error)
+
           });
 
       }
     },
+    created(){
+      console.log(this.buffer);
+
+    }
 
   }
 </script>
